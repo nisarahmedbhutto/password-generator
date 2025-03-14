@@ -4,7 +4,7 @@ import streamlit as st
 
 # page styling
 
-st.set_page_config(page_title="Password Strength By Check Nisar Ahmed",page_icon="🔑",layout="centered")
+st.set_page_config(page_title="Password Strength Checker By Nisar Ahmed",page_icon="🔑",layout="centered")
 
 # custom css 
 st.markdown("""
@@ -41,27 +41,27 @@ def check_password_strength(password):
     else:
         feedback.append("❌ Password Should Include ** Atleast One Number (0-9) **")
 
-    if re.search(r"[!@#$%]",password):
+    if re.search(r"[!@#$%^&*]",password):
         score += 1
     else:
-        feedback.append("❌ Include ** Atleast One Special Character (!@#$%) **.")
+        feedback.append("❌ Include ** Atleast One Special Character (!@#$%^&*) **.")
 
     
 
     # display password strength result
     
     if score == 4:
-        st.success("✅  ***Strong Password*** - Your Password Is Score.")
+        st.success("✅  **Strong Password** - Your Password Is Score.")
     elif score == 3 :
-        st.info("⚠️ ***Moderate  Password*** - Consider Improving Security By Adding More Feature ")
+        st.info("⚠️ **Moderate  Password** - Consider Improving Security By Adding More Feature ")
     else:
-        st.error("❌ ***Week Password*** - Follow The Suggestion Below To Strength it. ")
+        st.error("❌ **Week Password** - Follow The Suggestion Below To Strength it. ")
 
 
 # feedback
 
     if feedback:
-     with st.expander(" ***Improve Your Password*** "):
+     with st.expander(" **Improve Your Password** "):
          for item in feedback:
              st.write(item)
 password = st.text_input("Enter Your Password:" , type="password", help="Ensure Your Password Is Strong 🔐")
